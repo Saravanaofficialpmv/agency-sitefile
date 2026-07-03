@@ -1,0 +1,2 @@
+# 301 Redirect index.html explicitly to root for canonical SEO
+/index.html    /    301

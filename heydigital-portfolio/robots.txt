@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Explicitly Allow AI & LLM Search Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Sitemap & LLM index location
+Sitemap: https://www.heydigital.work/sitemap.xml
+Location: https://www.heydigital.work/llms.txt

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Outer border -->
+  <path d="M 3,3 L 28,17 L 16.5,18.5 L 9,28 Z" fill="#4a1a00" stroke="#4a1a00" stroke-width="1.5" stroke-linejoin="round" />
+  <!-- Inner orange shape -->
+  <path d="M 4.5,4.5 L 26,15.5 L 15.5,17 L 8.5,26 Z" fill="#ff8300" />
+  <!-- Highlight on top edge -->
+  <path d="M 4.5,4.5 L 26,15.5 L 20,15 L 4.5,6 Z" fill="#ffb873" />
+  <!-- Shadow on bottom-left edge -->
+  <path d="M 4.5,6 L 10,21 L 8.5,26 L 4.5,4.5 Z" fill="#d95f00" opacity="0.8" />
+</svg>

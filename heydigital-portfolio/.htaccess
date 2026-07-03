@@ -1,0 +1,11 @@
+# Enable Rewrite Engine
+RewriteEngine On
+RewriteBase /
+
+# 1. Redirect index.html to / (canonical homepage URL)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/
+RewriteRule ^index\.html$ https://www.heydigital.work/ [R=301,L]
+
+# 2. Redirect non-www to www (canonical domain)
+RewriteCond %{HTTP_HOST} ^heydigital\.work [NC]
+RewriteRule ^(.*)$ https://www.heydigital.work/$1 [R=301,L]

@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QY775TFL4H"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-QY775TFL4H');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Set up Claude Desktop & Claude Code for free using the Aerolink API gateway for third-party inference. Step-by-step guide with one-click setup.">
+    <meta name="keywords" content="Claude Code setup, free Claude, Claude Desktop config, Aerolink gateway, MCP server, Hey Digital">
+    <meta name="author" content="Hey Digital">
+    <link rel="canonical" href="https://www.heydigital.work/free-claude.html">
+
+    <!-- bootstrap grid css -->
+    <link rel="stylesheet" href="css/plugins/bootstrap-grid.css">
+    <!-- font awesome css -->
+    <link rel="stylesheet" href="css/plugins/font-awesome.min.css">
+    <!-- swiper css -->
+    <link rel="stylesheet" href="css/plugins/swiper.min.css">
+    <!-- fancybox css -->
+    <link rel="stylesheet" href="css/plugins/fancybox.min.css">
+    <!-- ashley scss -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- favicon -->
+    <link rel="icon" href="logo1.svg" type="image/svg+xml" style="background: transparent;">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <title>Free Claude Desktop & Code Setup Guide | Hey Digital</title>
+
+    <!-- FAQPage JSON-LD Schema for rich search snippet visibility -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Aerolink?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aerolink is a high-performance API gateway provider that allows developers to access Claude models by routing requests through a secure gateway for third-party inference. This allows running Claude Desktop and Claude Code using alternative billing or developer quotas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this configuration support both Windows and macOS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The automated setup prompt is designed to work on both operating systems. It will detect your OS, locate your Claude configuration folders, and write the correct configuration schema automatically."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my code and API key secure with this setup?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Your API key is stored locally on your system inside Claude's configuration library files. Request data is securely routed via standard TLS/SSL encryption directly to the Aerolink endpoints."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I add or update models in the future?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can manually add or update available models by editing the active configuration JSON file (e.g. <appliedId>.json) in your system's Claude-3p configuration library."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        .mil-step-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            position: relative;
+            overflow: hidden;
+        }
+        .mil-step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            border-color: #ffb700;
+        }
+        .mil-step-badge {
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #ffb700;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        .mil-step-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #000;
+            margin-bottom: 20px;
+        }
+        .mil-step-desc {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .mil-step-list {
+            margin-bottom: 25px;
+            padding-left: 0;
+            list-style: none;
+        }
+        .mil-step-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            color: #333;
+            font-size: 15px;
+        }
+        .mil-step-list li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: #ffb700;
+            font-size: 14px;
+        }
+        .mil-button {
+            font-family: inherit;
+        }
+        .mil-button.mil-copied {
+            background-color: #2e7d32 !important;
+            color: #fff !important;
+        }
+        .mil-button.mil-copied svg path {
+            fill: #fff !important;
+        }
+        .mil-warning-banner {
+            background: #fff8e1;
+            border-left: 4px solid #ffb700;
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        .mil-warning-banner i {
+            color: #ffb700;
+            font-size: 18px;
+            margin-top: 2px;
+        }
+        .mil-warning-text {
+            color: #5d4037;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+        .mil-tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .mil-tag {
+            background: #f5f5f5;
+            color: #666;
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 15px;
+            border: 1px solid #e0e0e0;
+        }
+        .mil-terminal-container {
+            background: #111;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            border: 1px solid #222;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        .mil-terminal-header {
+            background: #1a1a1a;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .mil-terminal-buttons {
+            display: flex;
+            gap: 6px;
+        }
+        .mil-terminal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .mil-terminal-dot.red { background: #ff5f56; }
+        .mil-terminal-dot.yellow { background: #ffbd2e; }
+        .mil-terminal-dot.green { background: #27c93f; }
+        .mil-terminal-title {
+            color: #888;
+            font-size: 12px;
+            font-family: monospace;
+        }
+        .mil-terminal-body {
+            padding: 20px;
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #fff;
+            overflow-x: auto;
+            max-height: 380px;
+        }
+        .mil-terminal-body pre {
+            margin: 0;
+            color: #a9b7c6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .mil-verify-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #eee;
+        }
+        .mil-verify-icon {
+            color: #27c93f;
+            font-size: 16px;
+        }
+        .mil-verify-label {
+            font-size: 14px;
+            color: #555;
+        }
+        .mil-verify-value {
+            margin-left: auto;
+            font-family: monospace;
+            font-size: 13px;
+            background: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+        .mil-accent-underline {
+            position: relative;
+            display: inline-block;
+        }
+        .mil-accent-underline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 3px;
+            background: #ffb700;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- wrapper -->
+    <div class="mil-wrapper" id="top">
+
+        <!-- cursor -->
+        <div class="mil-ball">
+            <span class="mil-icon-1">
+                <svg viewBox="0 0 128 128">
+                    <path d="M106.1,41.9c-1.2-1.2-3.1-1.2-4.2,0c-1.2,1.2-1.2,3.1,0,4.2L116.8,61H11.2l14.9-14.9c1.2-1.2,1.2-3.1,0-4.2  c-1.2-1.2-3.1-1.2-4.2,0l-20,20c-1.2,1.2-1.2,3.1,0,4.2l20,20c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9c1.2-1.2,1.2-3.1,0-4.2  L11.2,67h105.5l-14.9,14.9c-1.2,1.2-1.2,3.1,0,4.2c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9l20-20c1.2-1.2,1.2-3.1,0-4.2L106.1,41.9  z" />
+                </svg>
+            </span>
+            <div class="mil-more-text">More</div>
+            <div class="mil-choose-text">Choose</div>
+        </div>
+        <!-- cursor end -->
+
+        <!-- preloader -->
+        <div class="mil-preloader">
+            <div class="mil-preloader-animation">
+                <div class="mil-pos-abs mil-animation-1">
+                    <p class="mil-h3 mil-muted mil-thin">Pioneering</p>
+                    <p class="mil-h3 mil-muted">Creative</p>
+                    <p class="mil-h3 mil-muted mil-thin">Excellence</p>
+                </div>
+                <div class="mil-pos-abs mil-animation-2">
+                    <div class="mil-reveal-frame">
+                        <p class="mil-reveal-box"></p>
+                        <p class="mil-h3 mil-muted mil-thin">Heydigital</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- preloader end -->
+
+        <!-- scrollbar progress -->
+        <div class="mil-progress-track">
+            <div class="mil-progress"></div>
+        </div>
+        <!-- scrollbar progress end -->
+
+        <!-- menu -->
+        <div class="mil-menu-frame">
+            <div class="mil-frame-top">
+                <a href="/" class="mil-logo"><img src="logo1.svg" alt="Logo" style="height: 40px; background: transparent; max-width: 100%; border-radius: 50%;"></a>
+                <div class="mil-menu-btn">
+                    <span></span>
+                </div>
+            </div>
+            <div class="container">
+                <div class="mil-menu-content">
+                    <div class="row">
+                        <div class="col-xl-5">
+                            <nav class="mil-main-menu" id="swupMenu">
+                                <ul>
+                                    <li class="mil-has-children"><a href="/">Home</a></li>
+                                    <li class="mil-has-children"><a href="portfolio-3.html">Our Works</a></li>
+                                    <li class="mil-has-children"><a href="services.html">Services</a></li>
+                                    <li class="mil-has-children"><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="col-xl-7">
+                            <div class="mil-menu-right-frame">
+                                <div class="mil-animation-in">
+                                    <div class="mil-animation-frame">
+                                        <div class="mil-animation mil-position-1 mil-scale" data-value-1="2" data-value-2="2"></div>
+                                    </div>
+                                </div>
+                                <div class="mil-menu-right">
+                                    <div class="row">
+                                        <div class="col-lg-8 mil-mb-60">
+                                            <h6 class="mil-muted mil-mb-30">Projects</h6>
+                                            <ul class="mil-menu-list">
+                                                <li><a href="/">Home</a></li>
+                                                <li><a href="portfolio-3.html">Portfolio</a></li>
+                                                <li><a href="services.html">Services</a></li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="mil-divider mil-mb-60"></div>
+                                    <div class="row justify-content-between">
+                                        <div class="col-lg-4 mil-mb-60">
+                                            <h6 class="mil-muted mil-mb-30">Email</h6>
+                                            <p class="mil-light-soft mil-up">heydigitals.care@gmail.com<br><span class="mil-no-wrap">For inquiries</span></p>
+                                        </div>
+                                        <div class="col-lg-4 mil-mb-60">
+                                            <h6 class="mil-muted mil-mb-30">Phone</h6>
+                                            <p class="mil-light-soft"><span class="mil-no-wrap">+91 84893 10240</span><br><span class="mil-no-wrap">+91 90478 18342</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- menu end -->
+
+        <!-- curtain -->
+        <div class="mil-curtain"></div>
+        <!-- curtain end -->
+
+        <!-- frame -->
+        <div class="mil-frame">
+            <div class="mil-frame-top">
+                <a href="/" class="mil-logo"><img src="logo1.svg" alt="Logo" style="height: 40px; background: transparent; max-width: 100%; border-radius: 50%;"></a>
+                <div class="mil-menu-btn">
+                    <span></span>
+                </div>
+            </div>
+            <div class="mil-frame-bottom">
+                <div class="mil-current-page"></div>
+                <div class="mil-back-to-top">
+                    <a href="#top" class="mil-link mil-dark mil-arrow-place">
+                        <span>Back to top</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- frame end -->
+
+        <!-- content -->
+        <div class="mil-content">
+            <div id="swupMain" class="mil-main-transition">
+
+                <!-- banner -->
+                <section class="mil-banner mil-dark-bg">
+                    <div class="mi-invert-fix">
+                        <div class="mil-animation-frame">
+                            <div class="mil-animation mil-position-1 mil-scale" data-value-1="7" data-value-2="1.6" style="top: 300px; right: -100px"></div>
+                            <div class="mil-animation mil-position-2 mil-scale" data-value-1="4" data-value-2="1" style="left: 150px"></div>
+                        </div>
+                        <div class="mil-gradient"></div>
+                        <div class="container">
+                            <div class="mil-banner-content mil-up">
+                                <div class="mil-animation mil-position-3 mil-scale" data-value-1="3" data-value-2="1" style="left: 0; top: 0;"></div>
+                                <h1 class="mil-muted mil-mb-60">Free Claude <span class="mil-thin">Code Setup</span></h1>
+                                <div class="row">
+                                    <div class="col-md-8 col-lg-6">
+                                        <p class="mil-light-soft mil-mb-60">From zero to fully-featured Claude Code in five simple steps. Complete the instructions below using our automated configuration prompt helper.</p>
+                                    </div>
+                                </div>
+                                <a href="#guide" class="mil-link mil-accent mil-arrow-place mil-down-arrow">
+                                    <span>Begin Setup</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- banner end -->
+
+                <!-- guide section -->
+                <section class="mil-p-120-90" id="guide">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-10">
+
+                                <!-- Step 1 -->
+                                <div class="mil-step-card mil-up">
+                                    <span class="mil-step-badge">Step 1 &bull; Download</span>
+                                    <h3 class="mil-step-title">Download Claude Desktop</h3>
+                                    <ul class="mil-step-list">
+                                        <li>Visit the official Anthropic Claude download page.</li>
+                                        <li>Grab the appropriate installer build matching your desktop operating system (macOS or Windows).</li>
+                                        <li>Run the installer executable, launch the Claude Desktop GUI, and sign in with your free Claude account.</li>
+                                    </ul>
+                                    <a href="https://claude.ai/download" target="_blank" class="mil-button mil-arrow-place">
+                                        <span>Download Claude Desktop</span>
+                                    </a>
+                                </div>
+
+                                <!-- Step 2 -->
+                                <div class="mil-step-card mil-up">
+                                    <span class="mil-step-badge">Step 2 &bull; Credentials</span>
+                                    <h3 class="mil-step-title">Create Aerolink API Key</h3>
+                                    <ul class="mil-step-list">
+                                        <li>Create a user account on Aerolink using the official referral link below.</li>
+                                        <li>Verify your profile parameters through Telegram when prompted.</li>
+                                        <li>Navigate to your dashboard page and generate a brand-new API key.</li>
+                                        <li>Copy the key sequence (e.g. <code>aero_live_xxx</code>) to paste into your configuration in the next step.</li>
+                                    </ul>
+                                    <div class="mil-warning-banner">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        <div class="mil-warning-text">
+                                            <strong>API Key Privacy:</strong> Keep your Aerolink API key secure and private. Treat it exactly like a login password - never commit or upload it directly to any public repository!
+                                        </div>
+                                    </div>
+                                    <a href="https://aerolink.lat/register?ref=URFGW9I" target="_blank" class="mil-button mil-arrow-place">
+                                        <span>Register & Get API Key</span>
+                                    </a>
+                                </div>
+
+                                <!-- Step 3 -->
+                                <div class="mil-step-card mil-up">
+                                    <span class="mil-step-badge">Step 3 &bull; Auto-Setup</span>
+                                    <h3 class="mil-step-title">Feed Setup Prompt to Your AI Assistant</h3>
+                                    <p class="mil-step-desc">Copy the specialized prompt below and paste it into any local AI Coding Assistant (e.g., Gemini, Cursor, Cline, Copilot, or VS Code Agent) running on your computer. The assistant will detect your OS, locate your config folders, and write settings automatically!</p>
+                                    
+                                    <div class="mil-tag-container">
+                                        <span class="mil-tag">Claude Code</span>
+                                        <span class="mil-tag">Cursor</span>
+                                        <span class="mil-tag">Gemini 2.5</span>
+                                        <span class="mil-tag">GitHub Copilot</span>
+                                        <span class="mil-tag">Cline</span>
+                                        <span class="mil-tag">VS Code Agent</span>
+                                    </div>
+
+                                    <div class="mil-terminal-container">
+                                        <div class="mil-terminal-header">
+                                            <div class="mil-terminal-buttons">
+                                                <div class="mil-terminal-dot red"></div>
+                                                <div class="mil-terminal-dot yellow"></div>
+                                                <div class="mil-terminal-dot green"></div>
+                                            </div>
+                                            <span class="mil-terminal-title">setup_prompt.txt</span>
+                                        </div>
+                                        <div class="mil-terminal-body">
+                                            <pre id="setupPromptText">Hey! Please configure the official Claude Desktop App (GUI) on my system to use the Aerolink API gateway for third-party inference.
+
+Here are the details:
+
+- Base URL: https://capi.aerolink.lat/
+- Key: <PASTE_YOUR_AEROLINK_KEY_HERE>
+
+Please perform the following actions:
+
+1. Detect my Operating System (macOS or Windows).
+
+2. Locate the Claude-3p configLibrary folder:
+
+- On macOS: ~/Library/Application Support/Claude-3p/configLibrary/
+
+- On Windows: %LOCALAPPDATA%\Claude-3p\configLibrary\
+
+3. Ensure the folder exists. If it doesn't, create it.
+
+4. Look inside that folder for the '_meta.json' file.
+
+- If '_meta.json' exists, read its contents and parse the "appliedId" field (which is a UUID like "6f4c7f77-8b18-4590-9ec1-5874ed78ca84").
+
+- If '_meta.json' does NOT exist, create it with a new UUID and set it as the active configuration profile:
+
+{
+
+"appliedId": "6f4c7f77-8b18-4590-9ec1-5874ed78ca84",
+
+"entries": [
+
+{
+
+"id": "6f4c7f77-8b18-4590-9ec1-5874ed78ca84",
+
+"name": "Default"
+
+}
+
+]
+
+}
+
+5. Locate the active configuration JSON file in that folder (e.g. '<appliedId>.json', which matches the UUID from _meta.json).
+
+6. Write (or overwrite) this JSON file with the following gateway settings:
+
+{
+
+"inferenceProvider": "gateway",
+
+"inferenceGatewayBaseUrl": "https://capi.aerolink.lat/",
+
+"inferenceGatewayApiKey": "<PASTE_YOUR_AEROLINK_KEY_HERE>",
+
+"inferenceGatewayAuthScheme": "x-api-key",
+
+"inferenceModels": [
+
+"claude-sonnet-4-6",
+
+"claude-opus-4-8",
+
+"claude-opus-4-6",
+
+"claude-haiku-4-5-20251001"
+
+]
+
+}
+
+7. Verify that the files have been written correctly and confirm once the setup is complete.</pre>
+                                        </div>
+                                    </div>
+
+                                    <button class="mil-button mil-arrow-place" onclick="copyPrompt(this)">
+                                        <span>Copy Setup Prompt</span>
+                                    </button>
+                                </div>
+
+                                <!-- Step 4 -->
+                                <div class="mil-step-card mil-up">
+                                    <span class="mil-step-badge">Step 4 &bull; Validation</span>
+                                    <h3 class="mil-step-title">Verify Configuration</h3>
+                                    <ul class="mil-step-list">
+                                        <li>Open developer settings in Claude Desktop client.</li>
+                                        <li>Navigate to the **Configure Third-Party Inference** section.</li>
+                                        <li>Confirm each of the setup parameters are properly mapped:</li>
+                                    </ul>
+                                    
+                                    <div class="mil-mb-30">
+                                        <div class="mil-verify-item">
+                                            <i class="fas fa-check-circle mil-verify-icon"></i>
+                                            <span class="mil-verify-label">PROVIDER</span>
+                                            <span class="mil-verify-value">gateway</span>
+                                        </div>
+                                        <div class="mil-verify-item">
+                                            <i class="fas fa-check-circle mil-verify-icon"></i>
+                                            <span class="mil-verify-label">BASE URL</span>
+                                            <span class="mil-verify-value">https://capi.aerolink.lat/</span>
+                                        </div>
+                                        <div class="mil-verify-item">
+                                            <i class="fas fa-check-circle mil-verify-icon"></i>
+                                            <span class="mil-verify-label">AUTH SCHEME</span>
+                                            <span class="mil-verify-value">x-api-key</span>
+                                        </div>
+                                        <div class="mil-verify-item">
+                                            <i class="fas fa-check-circle mil-verify-icon"></i>
+                                            <span class="mil-verify-label">API KEY</span>
+                                            <span class="mil-verify-value">aero_live_key_provided</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mil-warning-banner" style="background: #eef9ff; border-left-color: #0288d1; margin-bottom: 0;">
+                                        <i class="fas fa-info-circle" style="color: #0288d1;"></i>
+                                        <div class="mil-warning-text" style="color: #01579b;">
+                                            Click <strong>Apply Changes</strong>, then fully restart the Claude Desktop application to reload local configurations.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Step 5 -->
+                                <div class="mil-step-card mil-up" style="margin-bottom: 0;">
+                                    <span class="mil-step-badge">Step 5 &bull; Success</span>
+                                    <h3 class="mil-step-title">Start Using Claude Code</h3>
+                                    <ul class="mil-step-list">
+                                        <li>Launch the newly configured Claude Desktop client.</li>
+                                        <li>Switch to the **Code** profile tab in the side menu.</li>
+                                        <li>Create a new development session.</li>
+                                        <li>Choose your preferred Claude model (e.g. <code>claude-sonnet-4-6</code> or <code>claude-opus-4-8</code>).</li>
+                                        <li>Start pair programming — you are ready to code! 🚀</li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- guide section end -->
+
+                <!-- faq section -->
+                <section class="mil-soft-bg mil-p-120-90">
+                    <div class="container">
+                        <div class="row justify-content-between">
+                            <div class="col-lg-5">
+                                <div class="mil-mb-90">
+                                    <h2 class="mil-up mil-mb-30" style="color: #000; font-weight: 800;">Frequently Asked <span class="mil-thin">Questions</span></h2>
+                                    <p class="mil-up mil-mb-60">Have questions about running Claude Desktop and Claude Code using Aerolink? Here are answers to common technical queries.</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mil-accordion-group mil-up">
+                                    <div class="mil-accordion-menu">
+                                        <p class="mil-accordion-head">What is Aerolink?</p>
+                                        <div class="mil-symbol mil-h3">
+                                            <div class="mil-plus">+</div>
+                                            <div class="mil-minus">-</div>
+                                        </div>
+                                    </div>
+                                    <div class="mil-accordion-content">
+                                        <p class="mil-mb-30">Aerolink is a high-performance API gateway provider that allows developers to access Claude models by routing requests through a secure gateway for third-party inference. This allows running Claude Desktop and Claude Code using alternative billing or developer quotas.</p>
+                                    </div>
+                                </div>
+                                <div class="mil-accordion-group mil-up">
+                                    <div class="mil-accordion-menu">
+                                        <p class="mil-accordion-head">Does this configuration support both Windows and macOS?</p>
+                                        <div class="mil-symbol mil-h3">
+                                            <div class="mil-plus">+</div>
+                                            <div class="mil-minus">-</div>
+                                        </div>
+                                    </div>
+                                    <div class="mil-accordion-content">
+                                        <p class="mil-mb-30">Yes. The automated setup prompt is designed to work on both operating systems. It will automatically detect your OS, locate your Claude configuration folders (~/Library/Application Support/ on macOS and %LOCALAPPDATA% on Windows), and write the correct configuration schema.</p>
+                                    </div>
+                                </div>
+                                <div class="mil-accordion-group mil-up">
+                                    <div class="mil-accordion-menu">
+                                        <p class="mil-accordion-head">Is my code and API key secure with this setup?</p>
+                                        <div class="mil-symbol mil-h3">
+                                            <div class="mil-plus">+</div>
+                                            <div class="mil-minus">-</div>
+                                        </div>
+                                    </div>
+                                    <div class="mil-accordion-content">
+                                        <p class="mil-mb-30">Yes. Your API key is stored locally on your system inside Claude's configuration library files. Request data is securely routed via standard TLS/SSL encryption directly to the Aerolink endpoints (https://capi.aerolink.lat/).</p>
+                                    </div>
+                                </div>
+                                <div class="mil-accordion-group mil-up">
+                                    <div class="mil-accordion-menu">
+                                        <p class="mil-accordion-head">How do I add or update models in the future?</p>
+                                        <div class="mil-symbol mil-h3">
+                                            <div class="mil-plus">+</div>
+                                            <div class="mil-minus">-</div>
+                                        </div>
+                                    </div>
+                                    <div class="mil-accordion-content">
+                                        <p class="mil-mb-30">You can manually add or update available models by editing the active configuration JSON file in your system's Claude-3p configuration library. Locate the file named after your configuration ID (e.g., &lt;appliedId&gt;.json) and modify the models listed in the inferenceModels array.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- faq section end -->
+
+                <!-- call to action -->
+                <section class="mil-dark-bg">
+                    <div class="mi-invert-fix">
+                        <div class="container mil-p-120-120">
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <span class="mil-suptitle mil-suptitle-right mil-suptitle-light mil-up">Need custom agency implementations? Let's talk tech.</span>
+                                </div>
+                            </div>
+                            <div class="mil-center">
+                                <h2 class="mil-muted mil-up mil-mb-60">Ready to build custom <span class="mil-thin">AI integrations?</span></h2>
+                                <div class="mil-up">
+                                    <a href="contact.html" class="mil-button mil-arrow-place">
+                                        <span>Get in Touch</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- footer -->
+                <footer class="mil-dark-bg">
+                    <div class="mi-invert-fix">
+                        <div class="container mil-p-120-60">
+                            <div class="row justify-content-between">
+                                <div class="col-md-4 col-lg-4 mil-mb-60">
+                                    <div class="mil-muted mil-logo mil-up mil-mb-30">HeyDigital.work</div>
+                                    <p class="mil-light-soft mil-up mil-mb-30">Grow your local and global organic rankings with custom digital platforms.</p>
+                                </div>
+                                <div class="col-md-7 col-lg-6">
+                                    <div class="row justify-content-end">
+                                        <div class="col-md-6 col-lg-7">
+                                            <nav class="mil-footer-menu mil-mb-60">
+                                                <ul>
+                                                    <li class="mil-up"><a href="/">Home</a></li>
+                                                    <li class="mil-up"><a href="portfolio-3.html">Our Works</a></li>
+                                                    <li class="mil-up"><a href="services.html">Services</a></li>
+                                                    <li class="mil-up"><a href="contact.html">Contact</a></li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between flex-sm-row-reverse">
+                                <div class="col-md-7 col-lg-6">
+                                    <div class="row justify-content-between">
+                                        <div class="col-md-6 col-lg-5 mil-mb-60">
+                                            <h6 class="mil-muted mil-up mil-mb-30">Email</h6>
+                                            <p class="mil-light-soft mil-up">heydigitals.care@gmail.com</p>
+                                        </div>
+                                        <div class="col-md-6 col-lg-5 mil-mb-60">
+                                            <h6 class="mil-muted mil-up mil-mb-30">Phone</h6>
+                                            <p class="mil-light-soft mil-up">+91 84893 10240</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-lg-6">
+                                    <p class="mil-light-soft mil-up">&copy; Copyright 2025 - HeyDigital.work All Rights Reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- footer end -->
+
+            </div>
+        </div>
+        <!-- content end -->
+
+        <!-- hidden elements -->
+        <div class="mil-hidden-elements">
+            <div class="mil-dodecahedron">
+                <div class="mil-pentagon">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="mil-pentagon">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="mil-pentagon">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="mil-pentagon">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="mil-pentagon">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="mil-pentagon">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="mil-pentagon">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="mil-pentagon">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="mil-pentagon">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="mil-pentagon">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="mil-pentagon">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="mil-pentagon">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="mil-arrow">
+                <path d="M 14 5.3417969 C 13.744125 5.3417969 13.487969 5.4412187 13.292969 5.6367188 L 13.207031 5.7226562 C 12.816031 6.1136563 12.816031 6.7467188 13.207031 7.1367188 L 17.070312 11 L 4 11 C 3.448 11 3 11.448 3 12 C 3 12.552 3.448 13 4 13 L 17.070312 13 L 13.207031 16.863281 C 12.816031 17.254281 12.816031 17.887344 13.207031 18.277344 L 13.292969 18.363281 C 13.683969 18.754281 14.317031 18.754281 14.707031 18.363281 L 20.363281 12.707031 C 20.754281 12.316031 20.754281 11.682969 20.363281 11.292969 L 14.707031 5.6367188 C 14.511531 5.4412187 14.255875 5.3417969 14 5.3417969 z" />
+            </svg>
+
+            <svg width="250" viewBox="0 0 300 1404" fill="none" xmlns="http://www.w3.org/2000/svg" class="mil-lines">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M1 892L1 941H299V892C299 809.71 232.29 743 150 743C67.7096 743 1 809.71 1 892ZM0 942H300V892C300 809.157 232.843 742 150 742C67.1573 742 0 809.157 0 892L0 942Z" class="mil-move" />
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M299 146V97L1 97V146C1 228.29 67.7096 295 150 295C232.29 295 299 228.29 299 146ZM300 96L0 96V146C0 228.843 67.1573 296 150 296C232.843 296 300 228.843 300 146V96Z" class="mil-move" />
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M299 1H1V1403H299V1ZM0 0V1404H300V0H0Z" />
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M150 -4.37115e-08L150 1404L149 1404L149 0L150 -4.37115e-08Z" />
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M150 1324C232.29 1324 299 1257.29 299 1175C299 1092.71 232.29 1026 150 1026C67.7096 1026 1 1092.71 1 1175C1 1257.29 67.7096 1324 150 1324ZM150 1325C232.843 1325 300 1257.84 300 1175C300 1092.16 232.843 1025 150 1025C67.1573 1025 0 1092.16 0 1175C0 1257.84 67.1573 1325 150 1325Z" class="mil-move" />
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M300 1175H0V1174H300V1175Z" class="mil-move" />
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M150 678C232.29 678 299 611.29 299 529C299 446.71 232.29 380 150 380C67.7096 380 1 446.71 1 529C1 611.29 67.7096 678 150 678ZM150 679C232.843 679 300 611.843 300 529C300 446.157 232.843 379 150 379C67.1573 379 0 446.157 0 529C0 611.843 67.1573 679 150 679Z" class="mil-move" />
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M299 380H1V678H299V380ZM0 379V679H300V379H0Z" class="mil-move" />
+            </svg>
+        </div>
+        <!-- hidden elements end -->
+
+    </div>
+    <!-- wrapper end -->
+
+    <!-- jQuery js -->
+    <script src="js/plugins/jquery.min.js"></script>
+    <!-- swup js -->
+    <script src="js/plugins/swup.min.js"></script>
+    <!-- swiper js -->
+    <script src="js/plugins/swiper.min.js"></script>
+    <!-- fancybox js -->
+    <script src="js/plugins/fancybox.min.js"></script>
+    <!-- gsap js -->
+    <script src="js/plugins/gsap.min.js"></script>
+    <!-- scroll trigger js -->
+    <script src="js/plugins/ScrollTrigger.min.js"></script>
+    <!-- scroll to js -->
+    <script src="js/plugins/ScrollTo.min.js"></script>
+    <!-- ashley js -->
+    <script src="js/main.js"></script>
+
+    <!-- Copy to Clipboard Logic -->
+    <script>
+        function copyText(text, btn) {
+            var span = btn.querySelector('span');
+            var originalText = span.innerText;
+            navigator.clipboard.writeText(text).then(function() {
+                span.innerText = "Copied!";
+                btn.classList.add('mil-copied');
+                setTimeout(function() {
+                    span.innerText = originalText;
+                    btn.classList.remove('mil-copied');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Error copying text: ', err);
+            });
+        }
+
+        function copyPrompt(btn) {
+            var promptText = document.getElementById('setupPromptText').innerText;
+            copyText(promptText, btn);
+        }
+    </script>
+</body>
+
+</html>

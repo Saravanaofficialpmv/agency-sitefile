@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Outer border/silhouette -->
+  <path d="M 12,1.5
+           C 12,0.5 15,0.5 15,1.5
+           L 15,11
+           C 15.8,10.2 17.5,10.2 17.5,11
+           L 17.5,11.5
+           C 18.3,10.7 20,10.7 20,11.5
+           L 20,12
+           C 20.8,11.2 22.5,11.2 22.5,12
+           L 22.5,18
+           C 22.5,22.5 20.5,26.5 16.5,26.5
+           C 15,26.5 13.5,26 12.5,25
+           C 12,24.5 11.5,22.5 11,18.5
+           C 11,18.5 9.5,12.5 10,11.5
+           C 10.5,10.5 12,11.5 12.5,12.5
+           L 13,10 Z"
+        fill="#4a1a00" stroke="#4a1a00" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+  
+  <!-- Main orange fill inside -->
+  <path d="M 12.5,2 L 12.5,11.5 L 14.5,11.5 L 14.5,2 Z" fill="#ff8300" />
+  <path d="M 15.5,11.5 L 15.5,17.5 C 15.5,22 17.5,25.5 21,25.5 C 21.5,25.5 21.5,19 21.5,18 L 21.5,12.5 Z" fill="#ff8300" />
+  <path d="M 10.5,12 C 10.5,12.5 11.5,18 12.5,24.5 L 15.5,25 L 15.5,11.5 L 11.5,10.5 Z" fill="#ff8300" />
+  <path d="M 15,11 L 17,11 L 17,17 Z" fill="#ff8300" />
+  <path d="M 17.5,11.5 L 19.5,11.5 L 19.5,17 Z" fill="#ff8300" />
+  <path d="M 20,12 L 22,12 L 22,17 Z" fill="#ff8300" />
+
+  <!-- Highlights (top/left) -->
+  <!-- Index finger highlight -->
+  <path d="M 12.5,2.5 L 12.5,11" stroke="#ffb873" stroke-width="0.8" />
+  <!-- Thumb highlight -->
+  <path d="M 10.5,12.5 C 10.8,11.8 11.8,12.2 12.2,13" stroke="#ffb873" stroke-width="0.8" fill="none" />
+  <!-- Other fingers highlights -->
+  <path d="M 15,11 Q 16,10.5 17,11" stroke="#ffb873" stroke-width="0.8" fill="none" />
+  <path d="M 17.5,11.5 Q 18.5,11 19.5,11.5" stroke="#ffb873" stroke-width="0.8" fill="none" />
+  <path d="M 20,12 Q 21,11.5 22,12" stroke="#ffb873" stroke-width="0.8" fill="none" />
+
+  <!-- Shadows (bottom/right) -->
+  <path d="M 14,3 L 14,11" stroke="#d95f00" stroke-width="0.8" />
+  <path d="M 16.5,12 L 16.5,17" stroke="#d95f00" stroke-width="0.8" />
+  <path d="M 19,12.5 L 19,17" stroke="#d95f00" stroke-width="0.8" />
+  <path d="M 21.5,13 L 21.5,17" stroke="#d95f00" stroke-width="0.8" />
+  <path d="M 13,24.5 C 13.5,25 15,25.5 16,25.5 C 19,25.5 21,22.5 21,18.5" stroke="#d95f00" stroke-width="0.8" fill="none" />
+</svg>

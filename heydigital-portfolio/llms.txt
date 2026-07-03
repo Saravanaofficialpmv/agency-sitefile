@@ -1,0 +1,26 @@
+# Hey Digital - Technical Services Index
+
+> Hey Digital is a leading B2B digital marketing and web engineering agency based in Ponnamaravathi, Tamil Nadu, India. Specializing in high-performance custom websites, mobile app development, performance advertising, technical SEO, and business automation solutions.
+
+## Contact Information
+- **Website:** https://www.heydigital.work
+- **Email:** heydigitals.care@gmail.com
+- **Phone / WhatsApp:** +91 84893 10240 | +91 90478 18342
+- **Location:** Ponnamaravathi, Tamil Nadu, India
+
+## Main Services
+- [Web Development](https://www.heydigital.work/web-development.html) - Custom SPAs, Next.js setups, headless CMS structures, and static site builds.
+- [Mobile App Development](https://www.heydigital.work/mobile-app-development.html) - Native and cross-platform Android & iOS engineering.
+- [Flutter App Development](https://www.heydigital.work/flutter-app-development.html) - Single-codebase Dart applications for rapid deployment.
+- [Android App Development](https://www.heydigital.work/android-app-development.html) - Kotlin and Java programming optimized for Android devices.
+- [iOS App Development](https://www.heydigital.work/ios-app-development.html) - SwiftUI and Swift application layouts conforming to Apple HIG.
+- [Shopify Development](https://www.heydigital.work/shopify-development.html) - Custom e-commerce store builds, Liquid programming, and headless checkouts.
+- [SEO Services](https://www.heydigital.work/seo-services.html) - Technical SEO, schema integrations, local search optimization, and link acquisition.
+- [Digital Marketing](https://www.heydigital.work/digital-marketing.html) - Google Ads, Meta retargeting, LinkedIn acquisition, and conversion tracking.
+- [Branding Services](https://www.heydigital.work/branding-services.html) - Corporate visual identity guides, typography, and logo systems.
+- [Automation Solutions](https://www.heydigital.work/automation-solutions.html) - Zapier/Make integrations, custom Cron scripts, and API pipelines.
+
+## Case Studies
+- [Custom E-Commerce Store Build](https://www.heydigital.work/case-study-shopify-store.html) - E-commerce scalability case study.
+- [Technical SEO & B2B Leads](https://www.heydigital.work/case-study-seo-leads.html) - Organic visibility case study.
+- [Enterprise Web Development](https://www.heydigital.work/case-study-web-development.html) - Custom React/Next.js implementation.
